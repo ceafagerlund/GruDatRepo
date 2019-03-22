@@ -74,7 +74,7 @@ class LinkedList:
         """Return a string representation of this list.
         The elements are enclosed in square brackets ("[]").
         Adjacent elements are separated by ", "."""
-        return "["node0.content","node1.content","node2.content"]"
+        return ("[",node0.content,",",node1.content,",",node2.content,"]")
 
 class ListElement:
     """Implements a node for linked list use."""

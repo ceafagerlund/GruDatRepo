@@ -1,4 +1,3 @@
-
 class LinkedList:
 	"""This class implements a linked list."""
     def _init_(self):
@@ -20,6 +19,7 @@ class LinkedList:
         node1.nextNode = node2
         node2.Nextnode = None
 
+        healthy()
 
 	def addFirst(Elem0):           #klar
 		"""Insert the given element at the beginning of this list."""
@@ -82,6 +82,11 @@ class ListElement:
         """Make default node"""
         self.content = 3
         self.nextNode = 4
+
+def healthy():
+    """Testing function. Checks list."""
+    pass
+
 
 
 # Unit test

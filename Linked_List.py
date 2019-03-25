@@ -1,91 +1,114 @@
 class LinkedList:
-	"""This class implements a linked list."""
-    def _init_(self):
-        """Construct empty linked list"""
-        _self.first_Element = 1                   #first element
-        _self.last_Element =  2                   #last element
-        _self.length = 3                         #list length
+        """This class implements a linked list."""
+        self._first_Element = None                   #first element
+        self._last_Element =  None                   #last element
+        self._length = 0                             #list length
 
-	def newList(self, firstElement):
-		"""Create a new list."""                  #hur göra godtyckligt lång?
-		node0 = ListElement()
-        node1 = ListElement()
-        node2 = ListElement()
+        def _init_(self):
+            """Construct empty linked list"""
+            self._first_Element = ListElement(None,None)
+            healthy()
 
-        node0.content = _self.first_Element
-        node2.content = _self.last_Element
+        def addFirst(elem):           #klar
+            """Insert the given element at the beginning of this list."""
+            self._first_Element = ListElement(elem,_self.first_Element)
+            self._length += 1
+            healthy()
 
-        node0.nextNode = node1
-        node1.nextNode = node2
-        node2.Nextnode = None
+        def addLast(elem):         	  #klar
+            """Insert the given element at the end of this list."""
+            self._last_Element.next = elem
+            self._last_Element = ListElement(elem,None)
+            self._length += 1
+            healthy()
 
-        healthy()
+        def getFirst():
+            """Return the first element of this list.
+            Return null if the list is empty."""
+            if self._length == 0:
+                raise valueError("List is empty")
+            else:
+                return self._first_Element
 
-	def addFirst(Elem0):           #klar
-		"""Insert the given element at the beginning of this list."""
-        node1.content = Elem1
+        def getLast():
+            """Return the last element of this list.
+            Return null if the list is empty."""
+            if self._length == 0:
+                raise valueError("List is empty")
+            else:
+                return self._last_Element
 
-    def addLast(Elem2):         #klar
-        """Insert the given element at the end of this list."""
-        node2.content = Elem2
-
-    def getFirst():
-        """Return the first element of this list.
-        Return null if the list is empty."""
-        if not _self:
-            return None
-        else:
-            return _self.first_Element
-
-    def getLast():
-        """Return the last element of this list.
-        Return null if the list is empty."""
-        if not _self:
-            return None
-        else:
-            return _self.last_Element
-
-    def get(index):
-        """Return the element at the specified position in this list.
-        Return null if index is out of bounds."""
-        if 0 < index < _self.length
-            #return element
-        else:
-            return None
+        def get(index):
+            """Return the element at the specified position in this list.
+            Return null if index is out of bounds."""
+            if index > self._length:
+                raise valueError("list is not that long")
+            else:
+                iter = self._first_Element
+                for k in range (1,index):
+                    iter = iter.next
+                return iter
 
 
-    def removeFirst(specific_list):
-        """Remove and returns the first element from this list.
-        Return null if the list is empty."""
-        if not specific_list:   #cred stackexchange, see https://stackoverflow.com/questions/53513/how-do-i-check-if-a-list-is-empty
-            return _first.Element
-        else:
-            return None
 
-    def clear(specific_list):
-        """Remove all elements from this list."""
-        specific_list = []
 
-	def length(specific_list):
-		"""Return the number of elements in the list."""
-		return (specific_list.length)
+        def removeFirst(specific_list):
+            """Remove and returns the first element from this list.
+            Return null if the list is empty."""
+            if self._length != 0:
+			    #remove?
+                return _first.Element
+            else:
+                raise valueError("List is empty")
 
-    def string(specific_list):
-        """Return a string representation of this list.
-        The elements are enclosed in square brackets ("[]").
-        Adjacent elements are separated by ", "."""
-        return ("[",node0.content,",",node1.content,",",node2.content,"]")
+        def clear():
+            """Remove all elements from the list."""
+			self._length = 0
+		    #remove?
+
+
+	    def length():
+		    """Return the number of elements in the list."""
+		    return (_self.length)
+
+        def string():
+            """Return a string representation of this list.
+            The elements are enclosed in square brackets ("[]").
+            Adjacent elements are separated by ", "."""
+        	    iter = _self.first_Element
+			    print("[")
+			    for k = 1:1:_self.length:
+				    print(iter,",")
+				    iter = iter.next
+			    return ("]")
 
 class ListElement:
     """Implements a node for linked list use."""
-    def _init_(self):
+    def _init_(self,content,next):
         """Make default node"""
-        self.content = 3
-        self.nextNode = 4
+        self.content = None
+        self.next = None
 
-def healthy():
+def healthy(): 		#first, last nollpekare? Vad menas?
     """Testing function. Checks list."""
-    pass
+    if _self.length = 0:
+		assert _self.first_Element.content == None 			# empty first, last for empty list
+		assert _self.last_Element.content == None
+		assert _self.first_Element.next == None
+	else if _self.length = 1: 								# either only first or only last
+		assert _self.first_Element.content != None and _self.last_Element.content = None or _self.first_Element.content = None and _self.last_Element.content != None
+	else:
+		assert _self.first_Element.content != None 			# empty first, last for empty list
+		assert _self.last_Element.content != None
+		assert _self.first_Element.next != None
+	assert _self.last_Element.next == None 					# always points to null
+
+	sizecount = 0
+	init = _self.first_Element
+	while init != None 										#assume no None elements in middle of code
+		sizecount += 1
+		init = init.next
+	assert _self.length == sizecount
 
 
 

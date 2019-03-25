@@ -115,4 +115,4 @@ class LinkedList:
 z = LinkedList
 z.new(z)
 z.addFirst(z, 4)
-z.addLast(z.self, 5)
+z.addLast(z, 5)

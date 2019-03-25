@@ -1,7 +1,7 @@
 
 class ListElement:
     """Implements a node for linked list use."""
-    def _init_(self,content,next):
+    def __init__(self,content,next):
         """Make default node"""
         self.content = None
         self.next = None
@@ -9,12 +9,12 @@ class ListElement:
 class LinkedList:
         """This class implements a linked list."""
 
-        def _init_(self,_first_Element,_last_Element,_length):
-            _first_Element = None                   #first element
-            _last_Element =  None                   #last element
-            _length = 0                             #list length
+        def __init__(self):
+            self._first_Element = None                   #first element
+            self._last_Element =  None                   #last element
+            self._length = 0                             #list length
 
-        def healthy(): 		#first, last nollpekare? Vad menas?
+        def healthy(self): 		#first, last nollpekare? Vad menas? https://stackoverflow.com/questions/25825693/calling-one-method-from-another-within-same-class-in-python
             """Testing function. Checks list."""
             if _length == 0:
                 assert _first_Element.content == None 			# empty first, last for empty list
@@ -28,31 +28,30 @@ class LinkedList:
                 assert not _first_Element.next == None
             assert _last_Element.next == None 					# always points to null
             sizecount = 0
-            init = _first_Element
+            init = self._first_Element
             while not init == None:
                 sizecount += 1
                 init = init.next
             assert _length == sizecount
 
-        def new():  #call: LL.new()
+        def new(self):  #call: LL.new()
             """Construct empty linked list"""
-            _first_Element = ListElement()
-            _self.healthy()
+            self._first_Element = ListElement(None,None)
 
-        def addFirst(elem):           #klar
+        def addFirst(self, elem):           #klar
             """Insert the given element at the beginning of this list."""
-            _first_Element = ListElement(elem,_first_Element)
-            _length += 1
-            self.healthy()
+            self._first_Element = ListElement(elem,self._first_Element)
+            self._length += 1
+            healthy(self)
 
-        def addLast(elem):         	  #klar
+        def addLast(self, elem):         	  #klar
             """Insert the given element at the end of this list."""
-            _last_Element.next = elem
-            _last_Element = ListElement(elem,None)
+            self._last_Element.next = elem
+            self._last_Element = ListElement(elem,None)
             _length += 1
-            healthy()
+            healthy(self, _first_Element,_last_Element,_length)
 
-        def getFirst():
+        def getFirst(self, _first_Element,_last_Element,_length):
             """Return the first element of this list.
             Return null if the list is empty."""
             if self._length == 0:
@@ -113,10 +112,7 @@ class LinkedList:
 # Unit test
 #testing code here
 
-v = ListElement()
-v.content = 3
-w = ListElement()
-w.content = 9
-v.next = w
 z = LinkedList
-z.new()
+z.new(z)
+z.addFirst(z, 4)
+z.addLast(z.self, 5)

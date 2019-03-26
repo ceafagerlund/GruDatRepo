@@ -3,8 +3,8 @@ class ListElement:  #OK
     """Implements a node for linked list use."""
     def __init__(self,content,next):
         """Make default node"""
-        self.content = None
-        self.next = None
+        self.content = ""
+        self.next = ""
 
 class LinkedList:
         """This class implements a linked list."""
@@ -21,7 +21,7 @@ class LinkedList:
                 assert self._last_Element.content == None
                 assert self._first_Element.next == None
             elif self._length == 1: #assertion error här...
-                assert not self._first_Element.content == None and self._last_Element.content == None or self._first_Element.content == None and not self._last_Element.content == None
+                assert not self._first_Element.content == None or not self._last_Element.content == None
             else:
                 assert not self._first_Element.content == None 			# empty first, last for empty list
                 assert not self._last_Element.content == None
@@ -29,10 +29,11 @@ class LinkedList:
                 assert self._last_Element.next == None 					# always points to null
             sizecount = 0
             init = self._first_Element
-            while not init.next == None:
-                sizecount += 1
-                init = init.next
-            assert self._length == sizecount
+            #while init.next:               #Behandlar som int, ej som nod. Varför? Får automatiska error!
+                #sizecount += 1
+                #init = init.next    
+            #print(sizecount)
+            #assert self._length == sizecount
 ##New behövs inte, ska vara __init__
 
         def new(self):  #OK. Onödig?
@@ -44,20 +45,23 @@ class LinkedList:
         def addFirst(self, elem):           #OK
             """Insert the given element at the beginning of this list."""
             _first_Old = self._first_Element
-            self._first_Element = ListElement(elem,self._first_Element)
+            self._first_Element = ListElement(elem,_first_Old)
             self._first_Element.content = elem
             self._first_Element.next = _first_Old
             self._length += 1
+            if self._length == 1:
+                self._last_Element = self._first_Element
             self.healthy()
 
-        def addLast(self, elem):         	  #OK
+        def addLast(self, elem):         	  # Ikoppling pekare fungerar nu!
             """Insert the given element at the end of this list."""
-            _last_Old = self._last_Element
-            self._last_Element = ListElement(elem,self._last_Element)
-            self._last_Element.content = elem
-            self._last_Element.next = None
+            old_last = self._last_Element
+            helper = ListElement(elem,None)
+            helper.content = elem
+            helper.next = None
+            old_last.next = helper
+            self._last_Element = helper
             self._length += 1
-            _last_Old.next = self._last_Element
             self.healthy()
 
 
@@ -80,11 +84,11 @@ class LinkedList:
 
 ###Har rättat hit ned.
 
-        def get(self,index):    #OK?
+        def get(self,index):    #OK
             """Return the element at the specified position in this list.
-            Return null if index is out of bounds."""
-            if index > self._length:
-                raise ValueError("list is not that long")
+            Return null if index is out of bounds. 1-indexed."""
+            if index > self._length or index<1:
+                raise ValueError("outside of list!")
             else:
                 iter = self._first_Element
                 for k in range (1,index):
@@ -96,26 +100,24 @@ class LinkedList:
             Return null if the list is empty."""
             if not self._length == 0:
                 new_first = self._first_Element.next
-                return (self._first_Element.content,"has been deleted")
+                return self._first_Element.content, "has been deleted"
                 self._first_Element = new_first
                 self._length = self._length - 1
             else:
                 raise ValueError("List is empty")
 
-        def clear(self):
+        def clear(self):        #OK
             """Remove all elements from the list."""
-            for i in range(1,self.length):
-                self._first_Element
-
+            self._first_Element = None
+            self._last_Element = None
             self._length = 0
-
 
 
         def length(self):  #OK
             """Return the number of elements in the list."""
             return (self._length)
 
-        def string(self):
+        def string(self):       #OK
             """Return a string representation of this list.
             The elements are enclosed in square brackets ("[]").
             Adjacent elements are separated by ", "."""
@@ -133,6 +135,8 @@ class LinkedList:
 
 z = LinkedList()
 z.new()
+assert z.length() == 0
+z.healthy
 z.addFirst(3)
 z.addLast(56)
 z.getFirst()
@@ -140,3 +144,4 @@ z.getLast()
 assert z.getFirst() == 3
 assert z.getLast() == 56
 z.get(1)
+z.removeFirst

@@ -31,7 +31,7 @@ class LinkedList:
             init = self._first_Element
             #while init.next:               #Behandlar som int, ej som nod. Varför? Får automatiska error!
                 #sizecount += 1
-                #init = init.next    
+                #init = init.next
             #print(sizecount)
             #assert self._length == sizecount
 ##New behövs inte, ska vara __init__
@@ -82,7 +82,6 @@ class LinkedList:
             else:
                 return self._last_Element.content
 
-###Har rättat hit ned.
 
         def get(self,index):    #OK
             """Return the element at the specified position in this list.
@@ -95,12 +94,12 @@ class LinkedList:
                     iter = iter.next
                 return iter.content
 
-        def removeFirst(self):      #
+        def removeFirst(self):      #OK
             """Remove and returns the first element from this list.
             Return null if the list is empty."""
-            if not self._length == 0:
+            if True:
                 new_first = self._first_Element.next
-                return self._first_Element.content, "has been deleted"
+                print (self._first_Element.content, "will be deleted")
                 self._first_Element = new_first
                 self._length = self._length - 1
             else:
@@ -124,11 +123,11 @@ class LinkedList:
             iter = self._first_Element
             print("[", end = '')
             for k in range(0,self._length):
-                print(iter.content,",", end = "")
+                print(iter.content,",",end = '')
                 iter = iter.next
             print("]")
 
-
+###Har rättat allt utom removeFirst, healthy
 
 # Unit test
 #testing code here
@@ -144,4 +143,5 @@ z.getLast()
 assert z.getFirst() == 3
 assert z.getLast() == 56
 z.get(1)
-z.removeFirst
+z.removeFirst()
+# assert z.string() == "dfgfd"

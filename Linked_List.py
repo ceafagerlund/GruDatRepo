@@ -3,8 +3,8 @@ class ListElement:  #OK
     """Implements a node for linked list use."""
     def __init__(self,content,next):
         """Make default node"""
-        self.content = ""
-        self.next = ""
+        self.content = None
+        self.next = None
 
 class LinkedList:
         """This class implements a linked list."""
@@ -26,7 +26,7 @@ class LinkedList:
                 assert not self._first_Element.content == None 			# empty first, last for empty list
                 assert not self._last_Element.content == None
                 assert not self._first_Element.next == None
-                assert self._last_Element.next == None 					# always points to null
+                assert self._last_Element.next == None 	#fungerar ej				# always points to null
             sizecount = 0
             init = self._first_Element
             #while init.next:               #Behandlar som int, ej som nod. Varför? Får automatiska error!
@@ -127,7 +127,7 @@ class LinkedList:
                 iter = iter.next
             print("]")
 
-###Har rättat allt utom removeFirst, healthy
+###Har rättat allt utom healthy
 
 # Unit test
 #testing code here
@@ -135,13 +135,26 @@ class LinkedList:
 z = LinkedList()
 z.new()
 assert z.length() == 0
-z.healthy
+z.healthy()
 z.addFirst(3)
+z.healthy()
+z.addFirst(8)
+z.healthy()
 z.addLast(56)
+z.healthy()
+z.addLast(0)
+z.healthy()
 z.getFirst()
+z.healthy()
 z.getLast()
-assert z.getFirst() == 3
-assert z.getLast() == 56
-z.get(1)
+z.healthy()
+assert z.getFirst() == 8
+assert z.getLast() == 0
+assert z.get(2) == 3
 z.removeFirst()
+assert z.getFirst() == 3
+assert z.length() == 3
+z.clear()
+assert z.length() == 0
+assert z.string() == None
 # assert z.string() == "dfgfd"

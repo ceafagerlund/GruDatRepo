@@ -1,7 +1,7 @@
 # Alexander Fagerlund, grudat19 uppg 1.1
 
 def factorial(n):
-   """Given natural number n, find n!."""
+   """Given natural number n, factorial finds n!."""
    if n == 1 or n == 0:
       return 1
    else:

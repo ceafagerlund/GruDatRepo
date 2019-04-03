@@ -1,14 +1,16 @@
+#Alexander Fagerlund, GruDat, uppg 1.2, 1.3.
 
 class _ListElement:         # Help class for nodes
     """Implements a node for linked list use."""
+
     def __init__(self,content,next):
         """Make default node"""
         self.content = None
         self.next = None
 
+
 class LinkedList:
         """A singly linked list of elements of type int."""
-
 
         def __init__(self):  #Time complexity O(1)
             """Create an empty list"""
@@ -20,8 +22,8 @@ class LinkedList:
             """Testing function. Given list, it verifies that content and pointers are correct."""
             if self._length == 0:
                 assert self._first_Element.content == None
-                assert self._last_Element.content == None			# empty first, last for empty list 
-                assert self._first_Element.next == None                         
+                assert self._last_Element.content == None			# empty first, last for empty list
+                assert self._first_Element.next == None
             elif self._length == 1:
                 assert not self._first_Element.content == None or not self._last_Element.content == None    # content in one node if one node long
             else:
@@ -75,7 +77,6 @@ class LinkedList:
             self._last_Element = helper
             self._length += 1
 
-
         def getFirst(self):         # Time complexity O(1)
             """Return the first element of this list.
             Return null if the list is empty."""
@@ -91,7 +92,6 @@ class LinkedList:
                 raise ValueError("List is empty")
             else:
                 return self._last_Element.content
-
 
         def get(self,index):    # uses 1-indexation. Time complexity: O(n) (worst case).
             """Return the element at the specified position in this list.
@@ -113,7 +113,7 @@ class LinkedList:
                 old_first = self._first_Element
                 self._first_Element = new_first
                 self._length = self._length - 1
-                return old_first
+                return old_first.content
             else:
                 raise ValueError("List is empty")
 
@@ -124,7 +124,6 @@ class LinkedList:
             self._last_Element.content = None
             self._last_Element.next = None
             self._length = 0
-
 
         def size(self):  # Time complexity O(1)
             """Return the number of elements in this list."""
@@ -148,8 +147,8 @@ class LinkedList:
                 pre_list = "[]"
             return pre_list
 
-
 # Unit test
+
 # Testing code below
 
 z = LinkedList()

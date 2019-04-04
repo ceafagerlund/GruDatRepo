@@ -1,64 +1,127 @@
 #Alexander Fagerlund, GruDat, uppg 2.5
 
-
 import random
 
 class treap:
     """Randomized binary search tree for strings."""
 
-    def __init__(self):
+    def __init__(self): # time complexity O(1)
         """Creates empty tree"""
-        self.data = ""
-        self.right = ""
-        self.left = ""
-        self.parent = ""
-        self.prio = random.randint(1,1000)
-        self.length = 0
+        self.data = None
+        self.right = None
+        self.left = None
+        self.parent = None
+        self.prio = random.randint(1,10000)
 
-    def add(self,node):
-        """Given string node, adds str to tree."""
-        if type(node) == str:
-            new_node = treap()
-            new_node.data = node
-            if self.length == 0:
-                self.length += 1
-                self.parent = None
-                return new_node.data
-            elif new_node.data < self.data:
-                self.left = self.left.add(new_node.data)
+
+
+    def add(self,node):     # worst case time complexity: O(n) (going through singly linked list)
+        """Given string node, adds string to tree."""
+        if type(node) is str:
+            text = node
+            node = treap()
+            node.data = text
+            if self.data is None:
+                self.data = node.data
+                return self
+            elif node.data == self.data:
+                pass
+            elif node.data < self.data:
+                if self.left is None:
+                    self.left = treap()
+                self.left = self.left.add(node.data)
                 if self.prio > self.left.prio:
-                    rotate_right()
+                    print("rotate right", text)
+                    self.rotate_right()
             else:
-                self.right = self.right.add(new_node.data) #nonfunctional due to wrong object type. Node help class? Treap help?
+                if self.right is None:
+                    self.right = treap()
+                self.right = self.right.add(node.data)
                 if self.prio > self.right.prio:
-                    rotate_left()
-            return self.string()
+                    print("rotate left", text)
+                    self.rotate_left()
+            return self
+
         else:
             raise ValueError("Input must be string!")
 
-    def size(self):
+    def _inorder(self,rep):     # visits all elements --> time complexity O(n)
+        """Visit all nodes of a binary search tree in sorted order."""
+        #print(self.data)
+        if self.data is None:
+            pass
+        else:
+            rep.append(self.data)
+            if self.left:
+                self.left._inorder(rep)
+            if self.right:
+                self.right._inorder(rep)
+        rep.sort()
+        return rep
+        
+    def size(self): #inherits complexity from inorder--> O(n). See inorder.
         """Returns number of elements in tree."""
-        return self.length
+        rep = []
+        rep = self._inorder(rep)
+        length = len(rep)
+        return length
 
-    def string(self):
+    def string(self):   #inherits complexity from inorder--> O(n). See inorder.
         """Returns all elements in alphabetical order as string representation."""
-        pass
+        text = []
+        text = self._inorder(text)
+        return(text)
+    
 
-    def rotate_right():
-        self.left.right = self
-        self.left.parent = self.parent
-        self.left = None
-        self.parent = None
+    def rotate_right(self):         #time complexity O(1)
+        if self.left is not None:
+            old_left = self.left
+            self.left = old_left.right
+            self.parent = old_left
+            old_left.right = self
+            
+            if self.parent:
+                if self.parent.right == self:
+                    self.parent.right = old_left
+                else:
+                    self.parent.left = old_left
 
-    def rotate_left():
-        self.right.left = self
-        self.right.parent = self.parent
-        self.right = None
-        self.parent = None
+    def rotate_left(self):          #time complexity O(1)
+        if self.right is not None:
+            old_right = self.right
+            self.right = old_right.left
+            self.parent = old_right
+            old_right.left = self
+            
+            if self.parent:
+                if self.parent.right == self:
+                    self.parent.right = old_right
+                else:
+                    self.parent.left = old_right
 
-
+            
 #Unit test
 a = treap()
+assert a.size() == 0
+assert a.string() == []
 a.add("D")
-a.add("EF")
-    
+assert a.data == "D"
+#assert a.size() == 1
+a.add("B")
+#assert a.right.data == "EF"
+#assert a.left == None
+#assert a.size() == 2
+a.add("E")
+a.add("F")
+#assert a.size() == 3
+#assert a.left.data == "B"
+#assert a.right.data == "EF"
+#a.add("R") 
+#assert a.right.data == "EF"
+#a.add("P")
+#assert a.right.right.left.data == "P"
+#assert a.string() == ['B', 'D', 'EF', 'P', 'R']
+#assert a.size() == 5
+
+
+            

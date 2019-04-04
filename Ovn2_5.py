@@ -14,7 +14,6 @@ class treap:
         self.prio = random.randint(1,10000)
 
 
-
     def add(self,node):     # worst case time complexity: O(n) (going through singly linked list)
         """Given string node, adds string to tree."""
         if type(node) is str:
@@ -47,7 +46,6 @@ class treap:
 
     def _inorder(self,rep):     # visits all elements --> time complexity O(n)
         """Visit all nodes of a binary search tree in sorted order."""
-        #print(self.data)
         if self.data is None:
             pass
         else:
@@ -62,6 +60,7 @@ class treap:
     def size(self): #inherits complexity from inorder--> O(n). See inorder.
         """Returns number of elements in tree."""
         rep = []
+        self._parentcheck(rep)
         rep = self._inorder(rep)
         length = len(rep)
         return length
@@ -69,9 +68,19 @@ class treap:
     def string(self):   #inherits complexity from inorder--> O(n). See inorder.
         """Returns all elements in alphabetical order as string representation."""
         text = []
+        self._parentcheck(text)
         text = self._inorder(text)
         return(text)
     
+    def _parentcheck(self,text):
+        if self.parent:
+            text.append(self.parent.data)
+            if self.parent.left == self and self.parent.right is not None and self.parent.right != self:
+                text.append(self.parent.right.string())
+            elif self.parent.left is not None and self.parent.right == self and self.parent.left != self:
+                text.append(self.parent.left.string())
+            self.parent._parentcheck(text)
+            
 
     def rotate_right(self):         #time complexity O(1)
         if self.left is not None:
@@ -85,6 +94,7 @@ class treap:
                     self.parent.right = old_left
                 else:
                     self.parent.left = old_left
+
 
     def rotate_left(self):          #time complexity O(1)
         if self.right is not None:
@@ -112,7 +122,8 @@ a.add("B")
 #assert a.left == None
 #assert a.size() == 2
 a.add("E")
-a.add("F")
+#print(a.string())
+#a.add("F")
 #assert a.size() == 3
 #assert a.left.data == "B"
 #assert a.right.data == "EF"

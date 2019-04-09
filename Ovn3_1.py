@@ -20,12 +20,12 @@ assert factorial(0) == 1
 
 ### Basfall: Om n = 0 eller n = 1 returneras 0! = 1! = 1.
 
-### Induktionsantagande: Antag att factorial är korrekt för talet n > 0.
+### Induktionsantagande: Antag att factorial(n) är korrekt för talet n > 0.
 
 ### För talet  n+1 > 1 är factorial(n+1) = (n+1)*factorial(n). Vi antog att
 ### factorial(n) = n!, så factorial(n+1) = (n+1)*factorial(n)
 ### = (n+1)*n! = (n+1)!.
 
 ### Eftersom vi vet att factorial är korrekt för n = 1 > 0 och att om
-### det gäller för  något n > 0 gäller det även för n + 1 är factorial korrekt 
+### det gäller för  något n > 0 gäller det även för n + 1 är factorial korrekt
 ### för alla n i N (inklusive n = 0, som vi kontrollerat separat).

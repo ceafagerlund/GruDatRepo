@@ -8,7 +8,6 @@ def mode(data):
     don't try. Time complexity: O(n) (expected time)."""
 
     hash_table = dict()
-    key_stats = []
     minimum = data[0]
 
     for i in range (0,len(data)):

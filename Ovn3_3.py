@@ -27,7 +27,18 @@ def signsort(data):
             data[pos_index_finder] = value_holder
             pos_index_found = 0     # resets swap readiness.
             neg_index_found = 0
-        
+            
+        # Loop invariant: there are no elements e1 with index > neg_index_finder with
+        # e1 < 0, or elements with index < pos_index_finder with e2 >= 0.
+        #
+        # Is trivially true before loop since neg_index_finder and pos_index_finder
+        # are at endpoints of array.
+        # 
+        # Is true after each iteration since neg_index_finder moves past positive numbers only,
+        # pos_index_finder moves past negative numbers only, and they only move past indices with
+        # the "wrong" sign after sorting (replacing positive numbers with negative and vice versa). 
+        #
+        # Is true after loop since entire array is sorted at termination.
     print(data)
     return data
 

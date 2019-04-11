@@ -28,3 +28,4 @@ assert mode([2]) == 2
 assert mode([7,6,7,7,6,66666666666666]) == 7
 assert mode([0]) == 0
 assert mode([1,1,1,1,1,1,1,1,1,0]) == 1
+assert mode([-1,-456]) == -456

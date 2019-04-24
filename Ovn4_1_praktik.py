@@ -72,7 +72,7 @@ PowTimes = PowTimer(N)
 ReturnSelector = 1                     #want to return time for sum1
 SumTimes = SumTimer(a,N)
 
-#plt.plot(N,PowTimes)                    #plot times for pow 
+#plt.plot(N,PowTimes,'orange')                    #plot times for pow 
 plt.scatter(N,PowTimes)
 #plt.xscale('log')
 plt.xlabel("Tal n")
@@ -87,8 +87,8 @@ plt.show()
 
 ReturnSelector = 2                      #want times for sum2
 SumTimes = SumTimer(a,N)            
-#plt.plot(N,SumTimes,'r')                #plot times for sum2
-plt.scatter(N,SumTimes)
+plt.plot(N,SumTimes,'g')                #plot times for sum2
+#plt.scatter(N,SumTimes)
 plt.xlabel("Arraylängder n")
 plt.ylabel("Tid för sum2(n)")
 plt.show()

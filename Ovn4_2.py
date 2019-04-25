@@ -30,4 +30,7 @@ def Countingsort(vect):
 
 # Unit test
 
-assert Countingsort([8,9,4,4,4,0,1,5,10]) == [0,1,4,4,4,5,8,9,10] 
+assert Countingsort([8,9,4,4,4,0,1,5,10]) == [0,1,4,4,4,5,8,9,10]
+assert Countingsort([1,2]) == [1,2]
+assert Countingsort([0]) == [0]
+assert Countingsort([4,5,345,5]) == [4,5,5,345]

@@ -31,8 +31,8 @@ def eigenstates(Energy,colorcounter):
 
     # potential energy function
     def V(x):
-        y = 0.0
-        #y=e*5.*x/a # triangular potential
+        #y = 0.0
+        y=e*5.*x/a # triangular potential
         #if x>0. and x<1. : y=e*5.*(x/a-1.) # finite triangular potential
         return y
 
@@ -72,9 +72,16 @@ def eigenstates(Energy,colorcounter):
     plt.ylabel('$\psi$')
     #plt.savefig('psi.pdf')
 
-eigenstates(0.37604415,1)
-eigenstates(1.5041768,2)
-eigenstates(3.384398,3)
-eigenstates(6.016708,4)
-eigenstates(9.401108,5)
+###Uppg 1
+#eigenstates(0.37604415,1)
+#eigenstates(1.5041768,2)
+#eigenstates(3.384398,3)
+#eigenstates(6.016708,4)
+#eigenstates(9.401108,5)
+###Uppg 2
+eigenstates(4.083869,1)
+eigenstates(6.00271 ,2)
+eigenstates(8.5947295,3)
+eigenstates(11.9533157,4)
+eigenstates(16.074619,5)
 plt.show()

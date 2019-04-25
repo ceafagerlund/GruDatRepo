@@ -13,11 +13,11 @@ hbar=1.0546e-34    # Plancks constant
 m=9.1094e-31       # electron mass
 e=1.6022e-19       # electron charge=-e
 c=2.0*m/hbar**2    # constant in Schrödinger equation
-N=10000000             # number of mesh points
+N=10000             # number of mesh points
 dx=a/N             # step length
 dx2=dx**2          # step length squared
 
-EeV = 0.37604415          # input energy in eV: test 0.3 , 0.4 , 0.3760 , 1.5
+EeV = 16.074619          # input energy in eV: test 0.3 , 0.4 , 0.3760 , 1.5
 E = EeV*e          # input energy in J
 #E = 6.024978632810431e-20   #MY exact value for E1, in J
 #EeV = E/e
@@ -27,8 +27,8 @@ E = EeV*e          # input energy in J
 
 # potential energy function
 def V(x):
-    y = 0.0
-    #y=e*5.*x/a # triangular potential
+    #y = 0.0
+    y=e*5.*x/a # triangular potential
     #if x>0. and x<1. : y=e*5.*(x/a-1.) # finite triangular potential
     return y
 

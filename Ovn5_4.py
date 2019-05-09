@@ -34,7 +34,7 @@ def _workCheckDFS(Graph,student,TruthCheck):
         return        
     Mark student as visited.
     set student.task to 1   #provar första uppgiften
-    for all neighbors to student:
+    for all neighbors to student: # For loop 1
         if student and some neighbor have task == 1:
            set student.OneFailed to True
            set student.task to 2    #provar andra uppgiften
@@ -42,6 +42,10 @@ def _workCheckDFS(Graph,student,TruthCheck):
            set student.TwoFailed to True
         if student.OneFailed and student.TwoFailed are True:    #ingen tilldelning gick
            set TruthCheck to False
-    for all neighbors x of student (in numerical order of name attribute):
+    for all neighbors x of student (in numerical order of name attribute):# For loop 2
         DFS(Graph,x,TruthCheck)
-    
+
+# For loops 1 and 2 above occur equally often. DFS recursive call in loop 2 yields theta(V + E). V is number of
+# vertices in connected component, E number of edges in connected component.
+# for loop 1 includes same number of references to neighbors ==> has same time complexity.
+# ==> Total time complexity theta(V+E).

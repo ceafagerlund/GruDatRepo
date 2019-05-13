@@ -26,16 +26,17 @@ class _Node:
         self._name = None
         self._neighbors = []
         self._color = None
-        self._isVisited = False
-        self._FailedColors = [False,False,False,False]
-        self._FailCount = 0
+        self._isVisited = False                         # To be used by __FourColorTrials
+        self._FailedColors = [False,False,False,False]  # Statistics for which colors failed
+        self._FailCount = 0                             # Data for how many colors failed
+        self._color = 0                                 # Initially tries first color
 
 class _Graph:
     """Help class for graph itself. Not to be tampered with."""
-    def __init__(self):
+    def __init__(self):                                 # 
         self._first = None
-        self._members = []
-        self._visited = []
+        self._members = []                              # Member list
+        self._visited = []                              # Data of which nodes are visited. Use later to improve performance
 
 
 def __GraphCreator(graph):
@@ -85,15 +86,21 @@ def __FourColorTrials(graph,colors,TruthValue):                  # Does not work
             if node._isVisited:
                 return        
             node._isVisited = True
-            node._color = colors[0]                              # Tries first color
             for neighbor in node._neighbors:                     # Compare with all neighbors
                 if node._color == neighbor._color:               # If this color assignment failed...
                     for i in range(0,len(colors)):
                         if node._color == colors[i]:             # Find which color entry failed this time 
                             node._FailedColors[i] = True         # Note that that color failed
+                            print("Color",i,"failed for",node._name)
+                            if i < len(colors) - 1:
+                                node._color = colors[i+1]            # Choose next available color
+                            else:                                # Exhausted list
+                                TruthValue = False
+                                break
                 for i in range(0,len(colors)):                   # Examine if all colors failed
                     if node._FailedColors[i] is True:
                         node._FailCount += 1                     # See if number of failed assignments is number of available assignments
+                print("FailCount is",node._FailCount,"for",node._name)
                 if node._FailCount == len(colors):
                     TruthValue = False                           # TruthValue is set to "False" as four-coloring fails for this node
                     break                                        # Can abandon loop, have already seen that four-coloring fails
@@ -102,4 +109,7 @@ def __FourColorTrials(graph,colors,TruthValue):                  # Does not work
     return TruthValue
 
 FourColorSolver()
+
+# Unit test
+"""Test cases to bug test code."""
 

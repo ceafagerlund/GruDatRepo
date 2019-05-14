@@ -27,14 +27,6 @@ class Node:
             if neighbor not in self._neighbors:
                 self._neighbors.append(neighbor)
 
-class _Graph:
-    """Help class for graph itself. Not to be tampered with."""
-    def __init__(self):                                 #
-        self._first = None
-        self._members = []                              # Member list
-        self._visited = []                              # Data of which nodes are visited. Use later to improve performance
-        self._TruthValue = True
-
 
 def __GraphCreator():
     """Tool for user to enter...
@@ -42,24 +34,24 @@ def __GraphCreator():
     Then: links between said corners.
     Program perfectly usable without this, as user
     can enter graph with instances of classes _Graph and _Node."""
-    graph = _Graph()
+    First = None
     used_node_names = []
+    GraphMembers = []
     ##########################Node names############################
     user_input = input("Provide a node name. Type '"'stop'"' at any time to finish naming nodes.")
     while user_input != "stop":
         if user_input not in used_node_names:
-            new = Node()
-            new._name = user_input
+            new = Node(user_input)
             used_node_names.append(new._name)
-            graph._members.append(new)
-            if graph._first is None:
-                graph._first = new
+            GraphMembers.append(new)
+            if First is None:
+                First = new
         else:
             print("Node name already in use. Be more original.")
         user_input = input("Enter new node name")
     print("Graph finished")
     ##########################Node neighbors########################
-    for node in graph._members:                                  # does not handle linking A to B automatically if B is linked to A
+    for node in GraphMembers:                                  # does not handle linking A to B automatically if B is linked to A
         print("Provide new neighbor for node",node._name,". Type '"'stop'"' to move on to next node.")
         inp = input()
         while inp != "done":
@@ -75,14 +67,14 @@ def __GraphCreator():
                 raise ValueError("Not four-colorable as it contains self-loop!")
             print("Enter a new neighbor of",node._name)
             inp = input()
-    print(graph._members)
-    return graph
+    print(GraphMembers)
+    return First
 
 def __4CGraph(graph,node,colors):  # Does not work yet...
     """Examines four-colorability of given graph Graph.
     Returns list of all corners and their colors if...
     four-colorable, otherwise returns False. Uses DFS search."""
-    #for node in graph._members:
+    #for node in GraphMembers:
     if node._isVisited:
         return graph._TruthValue
     #print("Visiting node",node._name)
@@ -97,11 +89,12 @@ def __4CGraph(graph,node,colors):  # Does not work yet...
         __4CGraph(graph,neighbor,colors)
     #print(graph._TruthValue)
     return graph._TruthValue
+
 def _VisitedUpdate(graph,node):
     """Updates which nodes have been visited."""
     node._isVisited = True
     graph._visited.append(node)
-    
+
 def AssignColor(node, colors):
     """Attempts color assignments for node until one works."""
     for neighbor in node._neighbors:                         # Compare with all neighbors
@@ -127,7 +120,7 @@ def _FailedCountCheck(graph,node,colors):
     return True
 
 def PrintMembers(Graph):
-    for member in Graph._members:
+    for member in GraphMembers:
         s = ""
         for neighbor in member._neighbors:
             s += neighbor._name+"\t"

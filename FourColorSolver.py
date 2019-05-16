@@ -59,9 +59,11 @@ class Graph:
         """Finds all elements in graph. Returns names, not memory addresses.
         Exists as user may want to return members of graph, and as helping
         function of GraphCreator."""
+        s = ""
         for member in self.Members:
             s = ""
             s += member._name+"\t"
+        print(s)
         return s
 
 def GraphCreator(graph):
@@ -197,4 +199,5 @@ if __name__ == '__main__':
 
     d = Graph()
     d.First = Node("jgh")
+    d.Members.append(d.First)
     assert not TestValueError(d,[1,2,3,4])
